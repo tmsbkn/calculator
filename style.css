@@ -7,7 +7,6 @@ body{
     
 }
 .wrapper{
-    
     color: white;
     min-height: 100vh;
     display: grid;
@@ -28,9 +27,15 @@ body{
 }
 .input-area{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: repeat(4,1fr);
     gap: .5rem;
-
+    grid-template-areas:
+    'clear b b divide'
+    'seven eight nine multi'
+    'four five six minus'
+    'one two three plus'
+    'nil  point total total';
 }
 .input-area div{
     font-size: 1rem;
@@ -50,3 +55,56 @@ body{
 .equals{
     background-color: #3584E4;
 }
+#clear{
+    grid-area: clear;
+}
+#one{
+    grid-area: one;
+}
+#two{
+    grid-area: two;
+}
+#three{
+    grid-area: three;
+}
+#four{
+    grid-area: four;
+}
+#five{
+    grid-area: five;
+}
+#six{
+    grid-area: six;
+}
+#seven{
+    grid-area: seven;
+}
+#eight{
+    grid-area: eight;
+}
+#nine{
+    grid-area: nine;
+}
+#zero{
+    grid-area: nil;
+}
+#decimal{
+    grid-area: point;
+}
+#divide{
+    grid-area: divide;
+}
+#multiply{
+    grid-area: multi;
+}
+#add{
+    grid-area: plus;
+}
+#subtract{
+    grid-area: minus;
+}
+#total{
+    grid-area: total;
+}
+
+
