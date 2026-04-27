@@ -1,0 +1,52 @@
+*{box-sizing: border-box;}
+body{
+    background-color:#222226;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    
+}
+.wrapper{
+    
+    color: white;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 10px;
+    width: min(670px, 98vw) ;
+    margin: auto;
+    padding: 10px;
+}
+.answer-field{
+    font-size: 2rem;
+    height: 100%;
+    background-color: #333337;
+    border-radius: 1rem;
+    text-align: end;
+    align-content: end;
+    padding: 1rem;
+}
+.input-area{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: .5rem;
+
+}
+.input-area div{
+    font-size: 1rem;
+    border-radius: 1rem;
+    padding: 1em;
+    text-align: center;
+}
+.input-area div:hover{
+        filter: brightness(1.1);
+}
+.clear, .operator{
+    background-color: #38383B;
+}
+.input-area .number{
+    background-color: #4E4E51;
+}
+.equals{
+    background-color: #3584E4;
+}
