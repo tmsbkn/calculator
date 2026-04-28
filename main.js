@@ -3,7 +3,14 @@ let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
 let exponent = (a, b) => a ** b;
-let invert = (a) => a * -1;
+function invert(a) {
+   if (secondNumber == '') {
+      firstNumber = firstNumber * -1;
+   } else {
+      secondNumber = secondNumber * -1;
+   }
+   printHistory();
+}
 function percent(a) {
    if (secondNumber == '') {
       firstNumber = firstNumber / 100;
@@ -100,6 +107,7 @@ clearButton.addEventListener('click', function () {
    operator = '';
    answer = '';
    printHistory();
+   printAnswer('');
 });
 const numbers = document.querySelectorAll('.number');
 numbers.forEach((element) => {
