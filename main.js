@@ -53,8 +53,9 @@ function operate(aRAW, op, bRAW) {
 function input(e) {
    const buttonPressed = e.target.innerText;
    if (answer !== '') {
-      firstNumber = answer;
+      firstNumber = '';
       secondNumber = '';
+      operator = '';
       answer = '';
       printHistory();
    }
