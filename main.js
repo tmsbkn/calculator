@@ -3,17 +3,29 @@ let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
 let exponent = (a, b) => a ** b;
-let percent = (a) => a / 100;
 let invert = (a) => a * -1;
+function percent(a) {
+   if (secondNumber == '') {
+      firstNumber = firstNumber / 100;
+   } else {
+      secondNumber = firstNumber * (secondNumber / 100);
+   }
+   printHistory();
+}
 
 let firstNumber = '',
    secondNumber = '',
-   operator = '';
+   operator = '',
+   answer = '';
 
-const answerField = document.getElementById('answer-field');
+const currentLine = document.getElementById('current-line');
+const history = document.getElementById('history');
+
+let printAnswer = (a) => (currentLine.innerText = a);
+let printHistory = () => (history.innerText = firstNumber + operator + secondNumber);
+let clearNum = (a) => (a = '');
 
 function operate(aRAW, op, bRAW) {
-   let answer;
    let a = Number(aRAW);
    let b = Number(bRAW);
    if (op == '+') {
@@ -27,15 +39,18 @@ function operate(aRAW, op, bRAW) {
    } else if (op == '^') {
       answer = exponent(a, b);
    }
-
-   answerField.innerText = answer;
-   firstNumber = String(answer);
-   operator = '';
-   secondNumber = '';
+   printHistory();
+   printAnswer(answer);
    return answer;
 }
 function input(e) {
    const buttonPressed = e.target.innerText;
+   if (answer !== '') {
+      firstNumber = answer;
+      secondNumber = '';
+      answer = '';
+      printHistory();
+   }
    //    If an operator button hasn't been pressed generate the first number:
    if (operator === '') {
       if (firstNumber.includes('.') && buttonPressed == '.') {
@@ -44,7 +59,7 @@ function input(e) {
          firstNumber += buttonPressed;
          console.log(firstNumber);
       }
-      answerField.innerText = firstNumber;
+      printHistory();
    } else {
       if (secondNumber.includes('.') && buttonPressed == '.') {
          console.log('error');
@@ -52,35 +67,54 @@ function input(e) {
          secondNumber += buttonPressed;
          console.log(secondNumber);
       }
-      answerField.innerText = secondNumber;
+      printHistory();
    }
 }
 function operatorPressed(e) {
    const buttonPressed = e.target.innerText;
-
-   operator = buttonPressed;
-   console.log(operator);
+   if (buttonPressed == '%') {
+      percent();
+   } else if (buttonPressed == '+/-') {
+      invert();
+   } else {
+      if (answer !== '') {
+         firstNumber = answer;
+         secondNumber = '';
+         answer = '';
+      }
+      if (secondNumber !== '') {
+         operate(firstNumber, operator, secondNumber);
+      }
+      operator = buttonPressed;
+      printHistory();
+      console.log(operator);
+   }
 }
 
 let buttons = document.querySelectorAll('.input-area div');
 
-let numbers = document.querySelectorAll('.number');
-let operators = document.querySelectorAll('.operator');
-const total = document.getElementById('total');
-total.addEventListener('click', function () {
-   console.log('totaled');
-
-   operate(firstNumber, operator, secondNumber);
+const clearButton = document.getElementById('clear');
+clearButton.addEventListener('click', function () {
+   firstNumber = '';
+   secondNumber = '';
+   operator = '';
+   answer = '';
+   printHistory();
 });
-console.log(operators);
-
+const numbers = document.querySelectorAll('.number');
 numbers.forEach((element) => {
    element.addEventListener('click', input);
 });
-
+const operators = document.querySelectorAll('.operator');
 operators.forEach((element) => {
    element.addEventListener('click', operatorPressed);
 });
+const total = document.getElementById('total');
+total.addEventListener('click', function () {
+   console.log('totaled');
+   operate(firstNumber, operator, secondNumber);
+});
+console.log(operators);
 
 console.log(buttons);
 console.log(buttons[17]);
