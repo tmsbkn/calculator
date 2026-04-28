@@ -16,7 +16,7 @@ body{
     margin: auto;
     padding: 10px;
 }
-.answer-field{
+#answer-field{
     font-size: 2rem;
     height: 100%;
     background-color: #333337;
